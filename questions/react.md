@@ -1720,3 +1720,23 @@ class MyComponent extends PureComponent {
     }
 }
 ```
+
+## 42. Жизненный цикл, который нельзя воспроизвести с помощью хуков
+
+### **`componentDidCatch`**
+Метод жизненного цикла `componentDidCatch` используется для обработки ошибок в классовых компонентах. Он позволяет перехватывать ошибки, возникающие в методах жизненного цикла, рендеринге или конструкторах дочерних компонентов.
+
+**Почему нельзя воспроизвести с помощью хуков:**
+- Хуки не предоставляют эквивалента для `componentDidCatch`. Для обработки ошибок в функциональных компонентах рекомендуется использовать Error Boundaries (границы ошибок), которые реализуются только через классовые компоненты.
+
+Пример:
+```javascript
+class ErrorBoundary extends React.Component {
+  componentDidCatch(error, errorInfo) {
+    console.log("Error:", error, "Info:", errorInfo);
+  }
+
+  render() {
+    return this.props.children;
+  }
+}
